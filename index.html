@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Happy Birthday, My Dear Brother!</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Pacifico&display=swap');
+
+    :root {
+      --pink: #ff6f91;
+      --purple: #845ec2;
+      --yellow: #ffd166;
+      --dark: #251b38;
+      --white: #fffafc;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Baloo 2", cursive;
+      color: var(--dark);
+      background: #fff6fb;
+      overflow-x: hidden;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    /* Homepage */
+    .hero {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30px 20px;
+  position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(rgba(47, 27, 75, 0.55), rgba(88, 44, 97, 0.65)),
+    url("images//img1.jpg")
+    center/cover no-repeat;
+}
+    .hero-content {
+      max-width: 800px;
+      color: white;
+      z-index: 2;
+    }
+
+    .small-heading {
+      font-size: 1.3rem;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .hero h1 {
+      font-family: "Pacifico", cursive;
+      font-size: clamp(3rem, 10vw, 7rem);
+      line-height: 1.15;
+      color: #fff;
+      text-shadow: 0 0 12px #ffb3c6, 0 0 28px var(--pink);
+      animation: glow 2s infinite alternate;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      margin: 15px 0 25px;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #fff, 0 0 20px var(--pink);
+      }
+      to {
+        text-shadow: 0 0 18px #fff, 0 0 45px var(--yellow);
+      }
+    }
+
+    /* Cake and candles */
+    .cake-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px auto;
+    }
+
+    .candles {
+      display: flex;
+      gap: 20px;
+      margin-bottom: -3px;
+      z-index: 1;
+    }
+
+    .candle {
+      width: 15px;
+      height: 65px;
+      border-radius: 5px 5px 2px 2px;
+      position: relative;
+      background: repeating-linear-gradient(
+        135deg,
+        #fff 0 8px,
+        #ff6f91 8px 16px
+      );
+    }
+
+    .flame {
+      position: absolute;
+      width: 19px;
+      height: 27px;
+      left: -2px;
+      top: -29px;
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(-45deg);
+      background: var(--yellow);
+      box-shadow: 0 0 16px 7px #ff9f1c;
+      animation: flicker 0.7s infinite alternate;
+    }
+
+    .flame.off {
+      opacity: 0;
+      transform: scale(0);
+    }
+
+    @keyframes flicker {
+      from {
+        transform: rotate(-45deg) scale(1);
+      }
+      to {
+        transform: rotate(-42deg) scale(1.12);
+      }
+    }
+
+    .cake {
+      width: 230px;
+      height: 100px;
+      border-radius: 15px 15px 30px 30px;
+      position: relative;
+      background: linear-gradient(#ffb6c9 0 35%, #ff81a4 35% 70%, #ff5d8f 70%);
+      box-shadow: 0 9px 0 #d74674, 0 15px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .cake::before {
+      content: "17";
+      position: absolute;
+      inset: 19px 0 auto;
+      color: white;
+      font-size: 2.3rem;
+      font-weight: 800;
+    }
+
+    .cake::after {
+      content: "";
+      position: absolute;
+      width: 250px;
+      height: 20px;
+      left: -10px;
+      top: -10px;
+      border-radius: 50%;
+      background: #fff0f5;
+    }
+
+    .blow-btn,
+    .journey-btn,
+    .memory-btn,
+    .message-btn {
+      color: white;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      padding: 13px 25px;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      box-shadow: 0 6px 0 rgba(89, 46, 131, 0.4);
+      transition: 0.25s;
+    }
+
+    .blow-btn:hover,
+    .journey-btn:hover,
+    .memory-btn:hover,
+    .message-btn:hover {
+      transform: translateY(-3px) scale(1.03);
+    }
+
+    .blow-btn {
+      margin-top: 30px;
+    }
+
+    .journey-btn {
+      display: none;
+      margin: 25px auto 0;
+      animation: popIn 0.8s ease forwards;
+    }
+
+    @keyframes popIn {
+      from {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .celebration-title {
+      display: none;
+      font-family: "Pacifico", cursive;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      color: var(--yellow);
+      margin-top: 20px;
+      animation: popIn 0.8s ease forwards;
+    }
+
+    /* Journey section */
+    .journey {
+      display: none;
+      padding: 80px 20px;
+      background:
+        radial-gradient(circle at top left, #ffe2ec, transparent 30%),
+        radial-gradient(circle at bottom right, #dfd0ff, transparent 35%),
+        #fff8fc;
+    }
+
+    .journey.visible {
+      display: block;
+      animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-heading h2 {
+      font-family: "Pacifico", cursive;
+      color: var(--purple);
+      font-size: clamp(2.4rem, 6vw, 4rem);
+    }
+
+    .section-heading p {
+      font-size: 1.15rem;
+    }
+
+    .timeline {
+      max-width: 1000px;
+      margin: auto;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+      transform: translateX(-50%);
+      background: linear-gradient(var(--pink), var(--purple));
+      border-radius: 20px;
+    }
+
+    .age-card {
+      width: 44%;
+      padding: 18px;
+      margin: 40px 0;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 24px;
+      box-shadow: 0 10px 25px rgba(93, 53, 117, 0.15);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.7s ease;
+      position: relative;
+    }
+
+    .age-card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .age-card:nth-child(odd) {
+      margin-right: auto;
+    }
+
+    .age-card:nth-child(even) {
+      margin-left: auto;
+    }
+
+    .age-card::after {
+      content: "";
+      width: 18px;
+      height: 18px;
+      background: var(--yellow);
+      border: 5px solid white;
+      border-radius: 50%;
+      position: absolute;
+      top: 30px;
+      box-shadow: 0 0 0 4px var(--pink);
+    }
+
+    .age-card:nth-child(odd)::after {
+      right: -14%;
+    }
+
+    .age-card:nth-child(even)::after {
+      left: -14%;
+    }
+
+    .age-card img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        border-radius: 18px;
+    }
+
+    .age-card h3 {
+      color: var(--purple);
+      font-size: 1.7rem;
+      margin-top: 10px;
+    }
+
+    .age-card p {
+      font-size: 1.05rem;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 50px;
+    }
+
+    .memories {
+      display: none;
+      max-width: 1000px;
+      margin: 35px auto 0;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .memories.visible {
+      display: grid;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .memories img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        border-radius: 18px;
+        box-shadow: 0 8px 18px rgba(70, 35, 85, 0.2);
+        transition: 0.3s;
+    }
+
+    .memories img:hover {
+      transform: rotate(2deg) scale(1.04);
+    }
+
+    .message-box {
+      display: none;
+      max-width: 700px;
+      margin: 30px auto 0;
+      padding: 25px;
+      text-align: center;
+      background: #fff;
+      border: 3px dashed var(--pink);
+      border-radius: 25px;
+      font-size: 1.3rem;
+      animation: fadeIn 0.6s ease;
+    }
+
+    .message-box.visible {
+      display: block;
+    }
+
+    footer {
+      padding: 25px;
+      text-align: center;
+      color: white;
+      background: var(--dark);
+    }
+
+    /* Mobile layout */
+    @media (max-width: 700px) {
+      .timeline::before {
+        left: 12px;
+      }
+
+      .age-card,
+      .age-card:nth-child(odd),
+      .age-card:nth-child(even) {
+        width: calc(100% - 35px);
+        margin-left: 35px;
+        margin-right: 0;
+      }
+
+      .age-card::after,
+      .age-card:nth-child(odd)::after,
+      .age-card:nth-child(even)::after {
+        left: -35px;
+        right: auto;
+        top: 30px;
+      }
+
+      .age-card img {
+        height: 200px;
+      }
+    }
+    /* Secret images corner button */
+.secret-corner-btn {
+  position: fixed;
+  right: -105px;
+  bottom: 25px;
+  z-index: 20;
+  padding: 14px 20px;
+  color: white;
+  background: linear-gradient(135deg, #ff6f91, #845ec2);
+  border-radius: 30px 0 0 30px;
+  font-size: 1rem;
+  font-weight: 700;
+  box-shadow: 0 5px 18px rgba(60, 30, 80, 0.35);
+  transition: right 0.35s ease, transform 0.3s ease;
+}
+
+/* It becomes visible when the mouse gets near it */
+.secret-corner-btn:hover {
+  right: 0;
+  transform: scale(1.03);
+}
+
+/* Secret image popup */
+.secret-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  padding: 30px 20px;
+  overflow-y: auto;
+  background: rgba(32, 18, 48, 0.9);
+}
+
+.secret-overlay.visible {
+  display: block;
+  animation: fadeIn 0.4s ease;
+}
+
+.secret-content {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 30px;
+  position: relative;
+  text-align: center;
+  background: #fff8fc;
+  border-radius: 28px;
+}
+
+.secret-content h2 {
+  color: var(--purple);
+  font-family: "Pacifico", cursive;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  margin-bottom: 10px;
+}
+
+.secret-content p {
+  font-size: 1.15rem;
+  margin-bottom: 25px;
+}
+
+.close-secret {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: white;
+  background: var(--pink);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.secret-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 18px;
+}
+
+.secret-gallery img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 7px 15px rgba(70, 35, 85, 0.2);
+  transition: 0.3s ease;
+}
+
+.secret-gallery img:hover {
+  transform: scale(1.04) rotate(2deg);
+}
+
+@media (max-width: 600px) {
+  .secret-corner-btn {
+    right: -125px;
+    bottom: 18px;
+    font-size: 0.9rem;
+  }
+
+  .secret-content {
+    padding: 25px 15px;
+  }
+}
+/* Clickable images */
+.memories img,
+.secret-gallery img {
+  cursor: zoom-in;
+}
+
+/* Full-screen photo viewer */
+.photo-lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  background: rgba(20, 10, 35, 0.92);
+}
+
+.photo-lightbox.visible {
+  display: flex;
+}
+
+.zoomed-photo {
+  max-width: 92vw;
+  max-height: 88vh;
+  object-fit: contain;
+  border: 5px solid white;
+  border-radius: 18px;
+  box-shadow: 0 0 35px rgba(255, 255, 255, 0.35);
+  animation: zoomPhoto 0.45s ease forwards;
+}
+
+@keyframes zoomPhoto {
+  from {
+    opacity: 0;
+    transform: scale(0.45) rotate(-3deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+.close-lightbox {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  z-index: 101;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  color: white;
+  background: var(--pink);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.photo-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  color: white;
+  text-align: center;
+  font-size: 1.2rem;
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- Homepage -->
+  <main class="hero">
+    <div class="hero-content">
+      <div class="small-heading">A special surprise for my favorite brother</div>
+
+      <h1>Happy Birthday!</h1>
+
+      <p>
+        Make a wish and blow out the candles, birthday boy!</p>
+
+      <div class="cake-area">
+        <div class="candles">
+          <div class="candle"><span class="flame"></span></div>
+          <div class="candle"><span class="flame"></span></div>
+          <div class="candle"><span class="flame"></span></div>
+        </div>
+
+        <div class="cake"></div>
+
+        <button class="blow-btn" id="blowButton">
+          🌬️ Blow the Candles
+        </button>
+      </div>
+
+      <div class="celebration-title" id="celebrationTitle">
+        Happy Birthday, Little Brother! 🎉
+      </div>
+
+      <button class="journey-btn" id="journeyButton">
+        🚀 Birthday Boy's Journey
+      </button>
+    </div>
+  </main>
+
+  <!-- Journey section -->
+  <section class="journey" id="journey">
+    <div class="section-heading">
+      <h2>His Amazing Journey</h2>
+      <p>From a tiny baby to the wonderful 17-year-old he is today 💙</p>
+    </div>
+
+    <div class="timeline">
+
+  <article class="age-card">
+    <img src="images\img26.jpeg"
+         alt="A beautiful childhood memory">
+
+    <h3>Where the Magic Began ✨</h3>
+    <p>
+      Every great story starts with a little smile, tiny footsteps,
+      and a heart full of wonder.
+    </p>
+  </article>
+
+  <article class="age-card">
+    <img src="images/img10.jpeg"
+         alt="A happy childhood memory">
+
+    <h3>Professional Trouble-Maker 😄</h3>
+    <p>
+      Bringing laughter, noise, and just the right amount of chaos
+      into everyone's life.
+    </p>
+  </article>
+
+  <article class="age-card">
+    <img src="images/img23.jpeg"
+         alt="A fun adventure memory">
+
+    <h3>Adventures Around Every Corner 🚀</h3>
+    <p>
+      Turning ordinary days into unforgettable adventures,
+      one crazy idea at a time.
+    </p>
+  </article>
+
+  <article class="age-card">
+    <img src="images/img19.jpeg"
+         alt="A smiling family memory">
+
+    <h3>A Smile That Lights Up the Room 🌟</h3>
+    <p>
+      Your smile has always had a special way of making even
+      the dullest days feel brighter.
+    </p>
+  </article>
+
+  <article class="age-card">
+    <img src="images/img24.jpeg"
+         alt="A personal growth memory">
+
+    <h3>Dreams Getting Bigger 💭</h3>
+    <p>
+      Slowly discovering who you are, what you love,
+      and all the amazing things you can become.
+    </p>
+  </article>
+
+  <article class="age-card">
+    <img src="images/img4.jpeg"
+         alt="A loving family memory">
+
+    <h3>Our Favorite Family Character 💙</h3>
+    <p>
+      Life would be much quieter without you,
+      but it would also be much less fun.
+    </p>
+  </article>
+
+  <article class="age-card">
+    <img src="images/img3.jpg"
+         alt="A proud family moment">
+
+    <h3>Growing Into Someone Amazing 🏆</h3>
+    <p>
+      Watching you grow has been one of the most beautiful
+      and proudest parts of my life.
+    </p>
+  </article>
+
+  <article class="age-card">
+    <img src="images/img15.jpeg"
+         alt="A recent birthday memory">
+
+    <h3>The Best Is Still Ahead 🎉</h3>
+    <p>
+      This is not the end of your story. It is just the beginning
+      of your most exciting chapter yet.
+    </p>
+  </article>
+
+</div>
+
+    <div class="actions">
+      <button class="message-btn" id="messageButton">
+        💌 Secret Message
+      </button>
+
+      <button class="memory-btn" id="memoryButton">
+        📸 Special Memories
+      </button>
+    </div>
+
+    <div class="message-box" id="messageBox">
+      <p>
+        My dear laddu,
+    Pata hai tujhe tu 18 saal ka hogya lamba, akdu, moti chamri wala insaan kabhi apni soft side kisi ko nhi dikhaya mere alawa. Pata hai mai kitni lucky hu tu mere life mei aaya majal ho tereh rhete hue koi mujhe kuch bol de tune mujhe hamesha support Kiya thankyou brother 🫡 haa mana ki dimag nhi chalta Tera to galat track pe chala jata hai 😮‍💨 but koi nhi mai hu na mai hamesha teko sahi track pe rakhungi ok don't worry 😅 yaar hamne kitna kuch sath kiya ,hum jo chizo ke liye ladte the yaad hai tujhe 😭 hum log har kuch sath karte aaye chahe mushkil waqt ho accha waqt ho har kuch aur aage bhi inshallah 💕 tu mere ek baat pe waha rehna accept kar liya bro thankyou aur uske baad kuch hota hai to bhi kabhi hume mehsoos nhi hone deta ki esa hua 🥺 hamare biche kitne secrets rahe, kitne up down deke ,but don't worry mei sab tikh kar dungi pata hai tujhe papa se mujhe last kya bola tha betuu apne bhaiyo ka bhi dhyaan rakhna unhe apne jaisa har chiz sikhana but papa to bhul gye ki mere laddu aur betu ko kuch sikhane ki zarurat nhi because they are the bestest ✨❤️❤️❤️❤️ papa upar se hum sab ko dekh bohot kuch honge aur tujhe dekh kar to pakka bolenge ye ladka nhi sudharega 🤣😂 but Allah ji ko har waqt shukriya khete honge ki mujhe apne esa beta aur patni diya , papa,mummy,mai ya sahil hum sabko tere pe garw hai beta tu world ka best beta, friend,bhai hai pati aur dmaad to bana nhi hai but mujhe pata hai wo bhi best hoga 😜hoga na haa haa hoga mujhe to bohot kuch pata hai 😏 bas issi tarah rahena mera agya kari laddu ✨ love you my sweet little laddu Allah ji teri sari wish puri kare tujhe hamesha khush rakhe tujhe kissi chiz ki kami na hone de ✨
+      </p>
+    </div>
+
+    <div class="memories" id="memories">
+      <!-- Replace these sample images with special family memories -->
+      <img src="images/img28.jpeg" alt="">
+      <img src="images/img5.jpeg" alt="">
+      <img src="images/img6.jpeg" alt="">
+      <img src="images/img7.jpeg" alt="">
+      <img src="images/img27.jpeg" alt="">
+      <img src="images/img2.jpg" alt="">
+    </div>
+  </section>
+<!-- Partially hidden secret button -->
+<button class="secret-corner-btn" id="secretImagesButton">
+  🔐 Secret Images — Click to See
+</button>
+
+<!-- Secret images popup -->
+<div class="secret-overlay" id="secretOverlay">
+  <div class="secret-content">
+
+    <button class="close-secret" id="closeSecret">
+      ×
+    </button>
+
+    <h2>Secret Memories 🤫</h2>
+
+    <p>
+      These memories are classified... but you are allowed to see them 💙
+    </p>
+
+    <div class="secret-gallery">
+      <!-- Replace these sample images with your own secret pictures -->
+      <img src="images/img17.jpeg"
+           alt="">
+
+      <img src="images/img18.jpeg"
+           alt="">
+
+      <img src="images/img20.jpeg"
+           alt="Secret family memory 3">
+
+      <img src="images/img21.jpeg"
+           alt="">
+
+      <img src="images/img25.jpeg"
+           alt="">
+
+      <img src="images/img11.jpeg"
+           alt="">
+    </div>
+
+  </div>
+</div>
+<!-- Photo zoom viewer -->
+<div class="photo-lightbox" id="photoLightbox">
+
+  <button class="close-lightbox" id="closeLightbox">
+    ×
+  </button>
+
+  <img class="zoomed-photo" id="zoomedPhoto" src="" alt="Zoomed photo">
+
+  <div class="photo-caption" id="photoCaption"></div>
+</div>
+  <footer>
+    Made with love by your sister 💖
+  </footer>
+
+  <script>
+    const blowButton = document.getElementById("blowButton");
+    const flames = document.querySelectorAll(".flame");
+    const celebrationTitle = document.getElementById("celebrationTitle");
+    const journeyButton = document.getElementById("journeyButton");
+    const journey = document.getElementById("journey");
+    const messageButton = document.getElementById("messageButton");
+    const messageBox = document.getElementById("messageBox");
+    const memoryButton = document.getElementById("memoryButton");
+    const memories = document.getElementById("memories");
+
+    // Blow out candles
+    blowButton.addEventListener("click", () => {
+      flames.forEach((flame) => {
+        flame.classList.add("off");
+      });
+
+      blowButton.textContent = "✨ Wish Made!";
+      blowButton.disabled = true;
+      blowButton.style.opacity = "0.7";
+
+      celebrationTitle.style.display = "block";
+      journeyButton.style.display = "block";
+    });
+
+    // Open the journey section
+    journeyButton.addEventListener("click", () => {
+      journey.classList.add("visible");
+
+      setTimeout(() => {
+        journey.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    });
+
+    // Secret message
+    messageButton.addEventListener("click", () => {
+      messageBox.classList.toggle("visible");
+
+      messageButton.textContent = messageBox.classList.contains("visible")
+        ? "💌 Hide Secret Message"
+        : "💌 Secret Message";
+    });
+
+    // Special memories
+    memoryButton.addEventListener("click", () => {
+      memories.classList.toggle("visible");
+
+      memoryButton.textContent = memories.classList.contains("visible")
+        ? "📸 Hide Special Memories"
+        : "📸 Special Memories";
+    });
+
+    // Reveal journey cards as the user scrolls
+    const cards = document.querySelectorAll(".age-card");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      },
+      {
+        threshold: 0.15
+      }
+    );
+
+    cards.forEach((card) => observer.observe(card));
+    const secretImagesButton =
+  document.getElementById("secretImagesButton");
+
+const secretOverlay =
+  document.getElementById("secretOverlay");
+
+const closeSecret =
+  document.getElementById("closeSecret");
+
+// Open secret images
+secretImagesButton.addEventListener("click", () => {
+  secretOverlay.classList.add("visible");
+});
+
+// Close secret images
+closeSecret.addEventListener("click", () => {
+  secretOverlay.classList.remove("visible");
+});
+
+// Close if the dark background is clicked
+secretOverlay.addEventListener("click", (event) => {
+  if (event.target === secretOverlay) {
+    secretOverlay.classList.remove("visible");
+  }
+});
+const photoLightbox = document.getElementById("photoLightbox");
+const zoomedPhoto = document.getElementById("zoomedPhoto");
+const closeLightbox = document.getElementById("closeLightbox");
+const photoCaption = document.getElementById("photoCaption");
+
+// Select images from both image sections
+const clickablePhotos = document.querySelectorAll(
+  ".memories img, .secret-gallery img"
+);
+
+// Open image zoom viewer
+clickablePhotos.forEach((photo) => {
+  photo.addEventListener("click", () => {
+    zoomedPhoto.src = photo.src;
+    zoomedPhoto.alt = photo.alt;
+    photoCaption.textContent = photo.alt;
+
+    photoLightbox.classList.add("visible");
+  });
+});
+
+// Close the image viewer
+closeLightbox.addEventListener("click", () => {
+  photoLightbox.classList.remove("visible");
+});
+
+// Close when clicking outside the image
+photoLightbox.addEventListener("click", (event) => {
+  if (event.target === photoLightbox) {
+    photoLightbox.classList.remove("visible");
+  }
+});
+
+// Close using the Escape key
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    photoLightbox.classList.remove("visible");
+  }
+});
+  </script>
+
+</body>
+</html>
